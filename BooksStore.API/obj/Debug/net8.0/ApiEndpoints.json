@@ -1,15 +1,21 @@
 [
   {
-    "ContainingType": "BooksStore.API.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
+    "ContainingType": "BooksStore.API.Controllers.BooksController",
+    "Method": "AddBook",
+    "RelativePath": "api/Books/add-book",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "bookDTO",
+        "Type": "BooksStore.API.Models.DTO.AddBookDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[BooksStore.API.WeatherForecast, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "BooksStore.API.Models.DTO.BooksDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -17,7 +23,89 @@
         ],
         "StatusCode": 200
       }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.BooksController",
+    "Method": "DeleteBook",
+    "RelativePath": "api/Books/delete-book-by-id/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.BooksController",
+    "Method": "GetBooks",
+    "RelativePath": "api/Books/get-all-books",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BooksStore.API.Models.DTO.BooksDTO, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.BooksController",
+    "Method": "GetBook",
+    "RelativePath": "api/Books/get-book-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.BooksDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.BooksController",
+    "Method": "UpdateBook",
+    "RelativePath": "api/Books/update-book-by-id/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "bookDTO",
+        "Type": "BooksStore.API.Models.DTO.UpdateBookDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
