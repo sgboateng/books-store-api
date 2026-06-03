@@ -2,13 +2,13 @@
 
 namespace BooksStore.API.Services
 {
-    public interface IBooksService
+    public interface IBookService
     {
-        Task<List<BooksDTO>> GetAllBooksAsync();
+        Task<List<BookAuthorsDTO>> GetAllBooksAsync();
 
-        Task<BooksDTO?> GetBookByIdAsync(int id);
+        Task<BookAuthorsDTO?> GetBookByIdAsync(int id);
 
-        Task<BooksDTO> AddBookAsync(AddBookDTO book);
+        Task<BookAuthorsDTO> AddBookAsync(AddBookDTO book);
 
         Task<bool> UpdateBookByIdAsync(int id, UpdateBookDTO book);
 

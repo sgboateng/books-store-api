@@ -1,4 +1,6 @@
-﻿namespace BooksStore.API.Models.DTO
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace BooksStore.API.Models.DTO
 {
     public class AddBookDTO
     {
@@ -14,8 +16,10 @@
 
         public string Genre { get; set; }
 
-        public string Author { get; set; }
-
         public string CoverUrl { get; set; }
+
+        public int PublisherId { get; set; }
+
+        public List<int> AuthorIds { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BooksStore.API.Services
 {
-    public class BooksService(ApplicationDbContext context) : IBooksService
+    public class BookService(ApplicationDbContext context) : IBookService
     {
-        public async Task<BooksDTO> AddBookAsync(AddBookDTO book)
+        public async Task<BookAuthorsDTO> AddBookAsync(AddBookDTO book)
         {
             var newBook = new Book()
             {
@@ -17,28 +17,47 @@ namespace BooksStore.API.Services
                 DateRead = book.IsRead ? book.DateRead.Value : null,
                 Rating = book.IsRead ? book.Rating : null,
                 Genre = book.Genre,
-                Author = book.Author,
                 CoverUrl = book.CoverUrl,
-                DateAdded = DateTime.Now
+                DateAdded = DateTime.Now,
+                PublisherId = book.PublisherId
             };
 
             context.Books.Add(newBook);
 
             await context.SaveChangesAsync();
 
-            return new BooksDTO()
+            foreach (var id in book.AuthorIds) 
             {
-                Id = newBook.Id,
-                Title = newBook.Title,
-                Description = newBook.Description,
-                IsRead = newBook.IsRead,
-                DateRead = newBook.DateRead,
-                Rating = newBook.Rating,
-                Genre = newBook.Genre,
-                Author = newBook.Author,
-                CoverUrl = newBook.CoverUrl,
-                DateAdded = newBook.DateAdded
-            };
+                var newBookAuthor = new Book_Author()
+                {
+                    BookId = newBook.Id,
+                    AuthorId = id
+                };
+
+                context.Books_Authors.Add(newBookAuthor);
+
+                await context.SaveChangesAsync();
+            }
+
+            var addedBook = await context.Books
+                .Where(c => c.Id == newBook.Id)
+                .Select(c => new BookAuthorsDTO
+                {
+                    Id = c.Id,
+                    Title = c.Title,
+                    Description = c.Description,
+                    IsRead = c.IsRead,
+                    DateRead = c.DateRead,
+                    Rating = c.Rating,
+                    Genre = c.Genre,
+                    CoverUrl = c.CoverUrl,
+                    DateAdded = c.DateAdded,
+                    PublisherName = c.Publisher.Name,
+                    AuthorNames = c.Book_Authors.Select(c => c.Author.FullName).ToList()
+                })
+                .FirstOrDefaultAsync();
+
+            return addedBook;
         }
 
         public async Task<bool> DeleteBookByIdAsync(int id)
@@ -53,8 +72,8 @@ namespace BooksStore.API.Services
             return true;
         }
 
-        public async Task<List<BooksDTO>> GetAllBooksAsync()
-            => await context.Books.Select(c => new BooksDTO
+        public async Task<List<BookAuthorsDTO>> GetAllBooksAsync()
+            => await context.Books.Select(c => new BookAuthorsDTO
             {
                 Id = c.Id,
                 Title = c.Title,
@@ -63,16 +82,17 @@ namespace BooksStore.API.Services
                 DateRead = c.DateRead,
                 Rating = c.Rating,
                 Genre = c.Genre,
-                Author = c.Author,
                 CoverUrl = c.CoverUrl,
-                DateAdded = c.DateAdded
+                DateAdded = c.DateAdded,
+                PublisherName = c.Publisher.Name,
+                AuthorNames = c.Book_Authors.Select(c => c.Author.FullName).ToList()
             }).ToListAsync();
 
-        public async Task<BooksDTO?> GetBookByIdAsync(int id)
+        public async Task<BookAuthorsDTO?> GetBookByIdAsync(int id)
         {
             var result = await context.Books
                 .Where(c => c.Id == id)
-                .Select(c => new BooksDTO
+                .Select(c => new BookAuthorsDTO
                 {
                     Id = c.Id,
                     Title = c.Title,
@@ -81,9 +101,10 @@ namespace BooksStore.API.Services
                     DateRead = c.DateRead,
                     Rating = c.Rating,
                     Genre = c.Genre,
-                    Author = c.Author,
                     CoverUrl = c.CoverUrl,
-                    DateAdded = c.DateAdded
+                    DateAdded = c.DateAdded,
+                    PublisherName = c.Publisher.Name,
+                    AuthorNames = c.Book_Authors.Select(c => c.Author.FullName).ToList()
                 })
                 .FirstOrDefaultAsync();
 
@@ -101,7 +122,6 @@ namespace BooksStore.API.Services
             existingBook.DateRead = book.DateRead;
             existingBook.Rating = book.Rating;
             existingBook.Genre = book.Genre;
-            existingBook.Author = book.Author;
             existingBook.CoverUrl = book.CoverUrl;
 
             await context.SaveChangesAsync();

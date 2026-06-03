@@ -21,9 +21,10 @@ namespace BooksStore.API.Data
                             DateRead = DateTime.Now.AddDays(-5),
                             Rating = 4,
                             Genre = "SQL",
-                            Author = "Sylvia Moestl Vasilik",
+                            // Author = "Sylvia Moestl Vasilik",
                             CoverUrl = "https://www.sqlpracticeproblems.com/",
                             DateAdded = DateTime.Now.AddDays(-10),
+                            PublisherId = 1
                         },
                         new Book()
                         {
@@ -31,9 +32,10 @@ namespace BooksStore.API.Data
                             Description = "The Big Ideas Behind Reliable, Scalable, and Maintainable Systems",
                             IsRead = false,
                             Genre = "Data Engineering",
-                            Author = "Martin Kleppmann",
+                            // Author = "Martin Kleppmann",
                             CoverUrl = "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/",
                             DateAdded = DateTime.Now.AddDays(-8),
+                            PublisherId = 2
                         }
                     );
 

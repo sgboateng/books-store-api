@@ -1,8 +1,106 @@
 [
   {
+    "ContainingType": "BooksStore.API.Controllers.AuthorsController",
+    "Method": "AddAuthor",
+    "RelativePath": "api/Authors/add-author",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorDTO",
+        "Type": "BooksStore.API.Models.DTO.AddAuthorDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.AuthorDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.AuthorsController",
+    "Method": "GetAuthors",
+    "RelativePath": "api/Authors/get-all-authors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BooksStore.API.Models.DTO.AuthorDTO, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.AuthorsController",
+    "Method": "GetAuthorBooks",
+    "RelativePath": "api/Authors/get-author-books-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.AuthorBooksDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.AuthorsController",
+    "Method": "GetAuthor",
+    "RelativePath": "api/Authors/get-author-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.AuthorDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "BooksStore.API.Controllers.BooksController",
     "Method": "AddBook",
-    "RelativePath": "api/Books/add-book",
+    "RelativePath": "api/Books/add-book-with-authors",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -15,7 +113,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "BooksStore.API.Models.DTO.BooksDTO",
+        "Type": "BooksStore.API.Models.DTO.BookDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -51,7 +149,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[BooksStore.API.Models.DTO.BooksDTO, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[BooksStore.API.Models.DTO.BookDTO, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -77,7 +175,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "BooksStore.API.Models.DTO.BooksDTO",
+        "Type": "BooksStore.API.Models.DTO.BookDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -107,5 +205,119 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.PublishersController",
+    "Method": "AddAPublisher",
+    "RelativePath": "api/Publishers/add-publisher",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "publisherDTO",
+        "Type": "BooksStore.API.Models.DTO.AddPublisherDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.PublisherDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.PublishersController",
+    "Method": "DeletePublisher",
+    "RelativePath": "api/Publishers/delete-publisher-by-id",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.PublishersController",
+    "Method": "GetPublishers",
+    "RelativePath": "api/Publishers/get-all-publishers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BooksStore.API.Models.DTO.PublisherDTO, BooksStore.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.PublishersController",
+    "Method": "GetPublisherAuthorsBooks",
+    "RelativePath": "api/Publishers/get-publisher-books-with-authors-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.PublisherAuthorsBooksDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BooksStore.API.Controllers.PublishersController",
+    "Method": "GetPublisher",
+    "RelativePath": "api/Publishers/get-publisher-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BooksStore.API.Models.DTO.PublisherDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
