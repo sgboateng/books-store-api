@@ -19,12 +19,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-builder.Services.AddScoped<IBooksService, BooksService>();      // Books Service
+builder.Services.AddScoped<IBookService, BookService>();      // Books Service
+builder.Services.AddScoped<IAuthorService, AuthorService>();      // Authors Service
+builder.Services.AddScoped<IPublisherService, PublisherService>();      // Publishers Service
 
 var app = builder.Build();
 
 // Run your seeding logic here
-ApplicationDbInitializer.Seed(app);
+// ApplicationDbInitializer.Seed(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

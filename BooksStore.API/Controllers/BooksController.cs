@@ -6,15 +6,15 @@ namespace BooksStore.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController(IBooksService booksService) : ControllerBase
+    public class BooksController(IBookService booksService) : ControllerBase
     {
         [HttpGet("get-all-books")]
-        public async Task<ActionResult<List<BooksDTO>>> GetBooks()
+        public async Task<ActionResult<List<BookDTO>>> GetBooks()
             => Ok(await booksService.GetAllBooksAsync());
 
 
         [HttpGet("get-book-by-id/{id}")]
-        public async Task<ActionResult<BooksDTO>> GetBook(int id)
+        public async Task<ActionResult<BookDTO>> GetBook(int id)
         {
             var book = await booksService.GetBookByIdAsync(id);
 
@@ -24,8 +24,8 @@ namespace BooksStore.API.Controllers
         }
 
         
-        [HttpPost("add-book")]
-        public async Task<ActionResult<BooksDTO>> AddBook(AddBookDTO bookDTO)
+        [HttpPost("add-book-with-authors")]
+        public async Task<ActionResult<BookDTO>> AddBook(AddBookDTO bookDTO)
         {
             var addedBook = await booksService.AddBookAsync(bookDTO);
 

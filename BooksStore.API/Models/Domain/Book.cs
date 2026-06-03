@@ -16,10 +16,16 @@
 
         public string Genre { get; set; }
 
-        public string Author { get; set; }
-
         public string CoverUrl { get; set; }
 
         public DateTime? DateAdded { get; set; }
+
+        // Foreign key for Publisher
+        public int PublisherId { get; set; }
+
+        public Publisher Publisher { get; set; }
+
+        // Navigation property for related Books
+        public ICollection<Book_Author> Book_Authors { get; set; }
     }
 }
